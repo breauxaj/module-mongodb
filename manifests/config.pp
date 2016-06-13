@@ -6,8 +6,7 @@ define mongodb::config (
   $key = $title
 
   augeas { "mongodb_conf/${key}":
-    lens    => 'PHP.lns',
-    incl    => $::mongodb::params::mongodb_config,
+    context => $::mongodb::params::mongodb_context,
     onlyif  => "get ${key} != '${value}'",
     changes => "set ${key} '${value}'",
     require => Package[$::mongodb::params::mongodb_package],
