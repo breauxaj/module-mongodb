@@ -12,7 +12,7 @@ class mongodb::params {
     'CentOS', 'OracleLinux', 'RedHat': {
       case $::operatingsystemmajrelease {
         '6': {
-          $mongodb_config  = '/etc/mongodb.conf'
+          $mongodb_config  = 'etc/mongodb.conf'
           $mongodb_context = "/files/${mongodb_config}"
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongod'
@@ -32,7 +32,7 @@ class mongodb::params {
           }
         }
         '7': {
-          $mongodb_config  = '/etc/mongod.conf'
+          $mongodb_config  = 'etc/mongod.conf'
           $mongodb_context = "/files/${mongodb_config}"
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongod'
@@ -59,7 +59,7 @@ class mongodb::params {
     'Debian': {
       case $::operatingsystemmajrelease {
         '8': {
-          $mongodb_config  = '/etc/mongodb.conf'
+          $mongodb_config  = 'etc/mongodb.conf'
           $mongodb_context = "/files/${mongodb_config}"
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongodb'
