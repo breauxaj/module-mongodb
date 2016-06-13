@@ -6,7 +6,7 @@ define mongodb::config (
   $key = $title
 
   augeas { "mongodb_conf/${key}":
-    lens    => 'Spacevars.simple_lns',
+    lens    => 'PHP.lns',
     incl    => $::mongodb::params::mongodb_config,
     onlyif  => "get ${key} != '${value}'",
     changes => "set ${key} '${value}'",
