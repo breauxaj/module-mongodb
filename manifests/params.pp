@@ -9,7 +9,7 @@ class mongodb::params {
   $mongodb_package_ensure = 'latest'
   
   case $::operatingsystem {
-    'CentOS', 'OracleLinux', 'RedHat': {
+    'CentOS', 'OracleLinux', 'RedHat', 'Scientific': {
       case $::operatingsystemmajrelease {
         '6': {
           $mongodb_config  = '/etc/mongodb.conf'
