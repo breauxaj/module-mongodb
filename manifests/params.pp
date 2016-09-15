@@ -15,12 +15,12 @@ class mongodb::params {
           $mongodb_config  = '/etc/mongodb.conf'
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongod'
-        
+
           group { 'mongodb':
             ensure => present,
             gid    => 184,
           }
-        
+
           user { 'mongodb':
             ensure     => present,
             gid        => 184,
@@ -34,12 +34,12 @@ class mongodb::params {
           $mongodb_config  = '/etc/mongod.conf'
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongod'
-        
+
           group { 'mongodb':
             ensure => present,
             gid    => 184,
           }
-        
+
           user { 'mongodb':
             ensure     => present,
             gid        => 184,
@@ -60,12 +60,12 @@ class mongodb::params {
           $mongodb_config  = '/etc/mongodb.conf'
           $mongodb_package = 'mongodb-server'
           $mongodb_service = 'mongodb'
-        
+
           group { 'mongodb':
             ensure => present,
             gid    => 184,
           }
-        
+
           user { 'mongodb':
             ensure     => present,
             gid        => 184,
