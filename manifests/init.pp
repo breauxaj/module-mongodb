@@ -31,10 +31,6 @@ class mongodb (
 ) inherits ::mongodb::params {
   package { $::mongodb::params::mongodb_package:
     ensure  => $ensure,
-    require => [
-      User['mongodb'],
-      Group['mongodb']
-    ]
   }
 
   $mongodb_config = hiera('mongodb',{})
@@ -45,4 +41,5 @@ class mongodb (
     enable  => true,
     require => Package[$::mongodb::params::mongodb_package],
   }
+
 }

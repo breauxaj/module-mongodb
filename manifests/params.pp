@@ -8,80 +8,36 @@
 class mongodb::params {
   $mongodb_package_ensure = 'latest'
 
-  case $::operatingsystem {
-    'CentOS', 'OracleLinux', 'RedHat', 'Scientific': {
-      case $::operatingsystemmajrelease {
-        '6': {
-          $mongodb_config  = '/etc/mongodb.conf'
-          $mongodb_package = 'mongodb-server'
-          $mongodb_service = 'mongod'
-
-          group { 'mongodb':
-            ensure => present,
-            gid    => 184,
-          }
-
-          user { 'mongodb':
-            ensure     => present,
-            gid        => 184,
-            home       => '/var/lib/mongodb',
-            shell      => '/bin/false',
-            managehome => true,
-            uid        => 184,
-          }
-        }
-        '7': {
-          $mongodb_config  = '/etc/mongod.conf'
-          $mongodb_package = 'mongodb-server'
-          $mongodb_service = 'mongod'
-
-          group { 'mongodb':
-            ensure => present,
-            gid    => 184,
-          }
-
-          user { 'mongodb':
-            ensure     => present,
-            gid        => 184,
-            home       => '/var/lib/mongodb',
-            shell      => '/bin/false',
-            managehome => true,
-            uid        => 184,
-          }
-        }
+  case $::osfamily {
+    'Debian': {
+      case $::operatingsystem {
         default: {
-          fail("The ${module_name} module is not supported on an ${::operatingsystem} ${::operatingsystemmajrelease} distribution.")
+          case $::operatingsystemmajrelease {
+            default: {
+              $mongodb_config  = '/etc/mongodb.conf'
+              $mongodb_package = 'mongodb-server'
+              $mongodb_service = 'mongodb'
+            }
+          }
         }
       }
     }
-    'Debian': {
-      case $::operatingsystemmajrelease {
-        '8': {
-          $mongodb_config  = '/etc/mongodb.conf'
-          $mongodb_package = 'mongodb-server'
-          $mongodb_service = 'mongodb'
-
-          group { 'mongodb':
-            ensure => present,
-            gid    => 184,
-          }
-
-          user { 'mongodb':
-            ensure     => present,
-            gid        => 184,
-            home       => '/var/lib/mongodb',
-            shell      => '/bin/false',
-            managehome => true,
-            uid        => 184,
-          }
-        }
+    'RedHat': {
+      case $::operatingsystem {
         default: {
-          fail("The ${module_name} module is not supported on an ${::operatingsystem} ${::operatingsystemmajrelease} distribution.")
+          case $::operatingsystemmajrelease {
+            default: {
+              $mongodb_config  = '/etc/mongod.conf'
+              $mongodb_package = 'mongodb-server'
+              $mongodb_service = 'mongod'
+            }
+          }
         }
       }
     }
     default: {
-      fail("The ${module_name} module is not supported on an ${::operatingsystem} based system.")
+      fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
     }
   }
+
 }
